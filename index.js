@@ -38,6 +38,7 @@ const play = (() => {
         gameBoard(player1.getName(), player2.getName());
         passAlong.player1 = player1.getName();
         passAlong.player2 = player2.getName();
+        changePlayer(game.flag, passAlong.player1, passAlong.player2);
     });
 
     restart.addEventListener('click', (e) => {
@@ -46,14 +47,17 @@ const play = (() => {
         e.preventDefault();
         display.innerHTML = '';
         display.classList.remove('noClick');
+        score.innerHTML = '';
         game.flag = 'Player 1';
         gameBoard(player1, player2);
+        changePlayer(game.flag, player1, player2);
     });
 
     newGame.addEventListener('click', (e) => {
         e.preventDefault();
         display.innerHTML = '';
         display.classList.remove('noClick');
+        score.innerHTML = '';
         game.flag = 'Player 1';
         form.reset();
         form.style.display = 'block';
@@ -61,6 +65,9 @@ const play = (() => {
         restart.style.display = 'none';
         score.style.display = 'none';
     })
+    return{
+    	passAlong
+    }
 })();
 
 const gameBoard = ((player1, player2) => {
@@ -74,11 +81,13 @@ const gameBoard = ((player1, player2) => {
                 arr[div.id] = 'X';
                 div.innerHTML = arr[div.id];
                 game.flag = 'Player 2';
+        		changePlayer(game.flag, player1, player2);
                 game.checkWinner(arr, player1, player2);
             } else if(game.flag == 'Player 2' && div.innerHTML == '') {
                 arr[div.id] = 'O';
                 div.innerHTML = arr[div.id];
                 game.flag = 'Player 1';
+        		changePlayer(game.flag, player1, player2);
                 game.checkWinner(arr, player1, player2);
             } else {
                 return;
@@ -121,7 +130,7 @@ const game = (() => {
             score.innerHTML = player2 + ' wins!';
             display.classList.add('noClick');
         } else if(arr.every(isTie)) {
-            alert('Game is a Tie!')
+            score.innerHTML = 'Tie Game!';
         } else {
             return;
         }
@@ -131,5 +140,13 @@ const game = (() => {
         checkWinner
     }
 })();
+
+const changePlayer = ((flag, player1, player2) => {
+	if(flag == 'Player 1') {
+		score.innerHTML = player1 + "'s turn";
+	} else {
+		score.innerHTML = player2 + "'s turn";
+	}
+});
 
 

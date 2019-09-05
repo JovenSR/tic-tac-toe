@@ -27,7 +27,6 @@ body {
 	background: #B6FF00;
 	font-size: 1em;
 	font-family: 'Press Start 2P', cursive;
-	grid-column: 3 / 5;
 	margin-top: 15px;
   	padding: 20px;
 }
@@ -105,4 +104,37 @@ body {
 	color: white;
 	padding: 10px;
 	font-family: 'Press Start 2P', cursive;
+}
+
+#formPlayer1 {
+	margin-top: 10px;
+	margin-left: 15px;
+}
+
+#formPlayer2 {
+	margin-top: 10px;
+	margin-left: 15px;
+}
+
+#formPlayer1 > input {
+	width: 50%;
+	margin-left: 5px;
+	margin-bottom: 5px;
+}
+
+#formPlayer2 > input {
+	width: 50%;
+	margin-left: 5px;
+	margin-bottom: 5px;
+}
+
+#formSubmit {
+	display: grid;
+	margin-top: 5px;
+}
+
+#formSubmit > input {
+	font-family: 'Press Start 2P', cursive;
+	padding: 10px;
+	justify-self: end;
 }
